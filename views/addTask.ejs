@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Thêm công việc mới</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <% include partial/navbar %>
+    <div class="container mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4">Thêm công việc của "<%= subject.name %>"</h1>
+            <form action="/subjects/<%= subject._id%>/addTask" method="POST">
+                <div class="form-group">
+                    <label for="task[member]">Thành viên</label>
+                    <select name="task[member]" class="form-control">
+                        <% subject.member.forEach(function(member){ %>
+                            <option value="<%= member.name %>"><%=member.name%></option>
+                        <% }); %>
+                    </select>
+                    <label for="task[content]">Nội dung công việc</label>
+                    <input class="form-control" type = "text" name = "task[content]" autocomplete="off">
+                </div>
+                <button class="btn btn-success">Thêm</button>
+                <a class="btn btn-warning" href="/subjects/<%= subject._id %>">Trở về</a>
+            </form>
+        </div>
+    </div>
+    <% include partial/footer.ejs %>
+</body>
+</html>

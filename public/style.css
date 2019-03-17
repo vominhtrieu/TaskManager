@@ -1,0 +1,11 @@
+body
+{
+    background-image: url("/Resources/background.jpeg");
+    background-size: center;
+    background-attachment: fixed;
+}
+
+input:invalid
+{
+    border-color: red;
+}

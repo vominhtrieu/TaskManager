@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="jumbotron">        
+            <h1 class="display-4">Đăng ký</h1>
+            <form action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập</label>
+                    <input class="form-control" type = "text" name = "username" pattern="[A-Za-z0-9]{4,10}"
+                    required autocomplete="off">
+                    <label for="name">Họ và tên</label>
+                    <input class="form-control" type = "text" name = "name"
+                    required autocomplete="off">
+                    <label for="password">Mật khẩu</label>
+                    <input class="form-control" type = "password" name = "password" pattern="[A-Za-z0-9@#$%^&*!~`?/<>;-_=+\|].{4,}"
+                     required autocomplete="off">
+                </div>
+                <button class="btn btn-success">Đăng ký</button>
+                <p class="display-5">Đã có tải khoản? <a href="/login">Đăng nhập</a></p>
+                <a class="btn btn-warning" href="/">Trở về</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
