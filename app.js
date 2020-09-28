@@ -38,6 +38,6 @@ app.use("/", taskRoutes);
 app.use("/", subjectRoutes);
 app.use("/", indexRoutes);
 
-mongoose.connect("mongodb://localhost:27017/CongViec", {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true});
 
-app.listen(80);
+app.listen(3000);
