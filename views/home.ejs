@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <title>Phân công công việc</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
     <% include partial/navbar %>
     <div class="container mt-4">
-        <div class="jumbotron">
-            <h1 class="display-4">Phân công công việc</h1>
-            <p class="lead">Web cập nhật công việc hiện có liên quan đến các nhóm mà bạn Triều ẹp chai làm trưởng nhóm</p>
-            <h3 class="display-8">Môn học:</h3>
-            <% if(subjects.length === 0){ %>
-                <p>Hiện chưa có môn học nào</p>
-            <% } %>
-            <% subjects.forEach(function(subject){ %>
-                <form action="/subjects/<%=subject._id%>/delete" method="POST">
-                    <a class="btn btn-primary" href="/subjects/<%=subject._id%>"><%= subject.name %></a>
-                    <% if(currentUser && currentUser._id.toString() === subject.creator.id.toString()) {%>
-                        <button class="btn  btn-danger">Xóa</button>
-                    <% } %>
-                </form>
-                <br>
-            <% }); %>
-            <hr>
-            <a class="btn btn-success" href="/addSubject">Thêm môn học</a>
-            <p class="display-10 mt-3">
-                Mọi thắc mắc liên hệ mình qua <a href="https://www.facebook.com/trieu.vo.1656">Facebook</a>
-            </p>
-        </div>
+      <div class="jumbotron">
+        <h1 class="display-4">Phân công công việc</h1>
+        <h3 class="display-8">Môn học:</h3>
+        <% if(subjects.length === 0){ %>
+        <p>Hiện chưa có môn học nào</p>
+        <% } %> <% subjects.forEach(function(subject){ %>
+        <form action="/subjects/<%=subject._id%>/delete" method="POST">
+          <% if(currentUser && currentUser._id.toString() ===
+          subject.creator.id.toString()) {%>
+          <button class="btn btn-danger">Xóa</button>
+          <% } %>
+          <a class="btn btn-primary" href="/subjects/<%=subject._id%>"
+            ><%= subject.name %></a
+          >
+        </form>
+        <br />
+        <% }); %>
+        <hr />
+        <a class="btn btn-success" href="/addSubject">Thêm môn học</a>
+        <p class="display-10 mt-3">
+          Mọi thắc mắc liên hệ mình qua
+          <a href="https://www.facebook.com/trieu.vm">Facebook</a>
+        </p>
+      </div>
     </div>
     <% include partial/footer.ejs %>
-</body>
+  </body>
 </html>

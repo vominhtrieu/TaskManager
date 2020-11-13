@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const passportLocal = require("passport-local");
-const passportStrategy = require("passport-strategy");
 const expressSession = require("express-session");
 
 var User = require("./models/User");
@@ -14,20 +13,21 @@ var indexRoutes = require("./routes/index");
 var subjectRoutes = require("./routes/subject");
 var taskRoutes = require("./routes/task");
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("./public"));
-app.use(expressSession({
+app.use(
+  expressSession({
     secret: "drfghdjned jhecjheniulkwoiduyewfudutyweguhdij",
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: false,
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(function(req, res, next)
-{
-    res.locals.currentUser = req.user;
-    next();
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
 });
 
 passport.use(new passportLocal(User.authenticate()));
@@ -38,6 +38,9 @@ app.use("/", taskRoutes);
 app.use("/", subjectRoutes);
 app.use("/", indexRoutes);
 
-mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.listen(process.env.PORT || 3000);
