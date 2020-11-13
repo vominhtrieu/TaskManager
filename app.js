@@ -38,6 +38,6 @@ app.use("/", taskRoutes);
 app.use("/", subjectRoutes);
 app.use("/", indexRoutes);
 
-mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
