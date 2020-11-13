@@ -64,7 +64,8 @@
           <a class="btn btn-success" href="/subjects/<%=subject._id%>/addTask"
             >Thêm công việc</a
           >
-          <% } %> <% if(currentUser) { %>
+          <% } %> <% if(currentUser && !subject.member.some(member =>
+          member.id.toString() === currentUser._id.toString())) { %>
           <form
             class="d-inline"
             action="/subjects/<%=subject._id%>/enroll"
